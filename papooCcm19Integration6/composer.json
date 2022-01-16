@@ -1,0 +1,46 @@
+{
+	"name": "papoo/ccm19integration6",
+	"description": "This plugin integrates the CCM19 Cookie Consent Manager.",
+	"version": "v1.0.3",
+	"type": "shopware-platform-plugin",
+	"license": "proprietary",
+	"authors": [
+		{
+			"name": "Papoo Software & Media GmbH",
+			"role": "Manufacturer"
+		}
+	],
+	"require": {
+		"shopware/core": "6.*",
+		"shopware/storefront": "*"
+	},
+	"extra": {
+		"shopware-plugin-class": "Papoo\\Ccm19Integration\\papooCcm19Integration6",
+		"plugin-icon": "src/Resources/config/plugin.png",
+		"copyright": "(c) Papoo Software & Media GmbH",
+		"label": {
+			"de-DE": "CCM19-Integration",
+			"en-GB": "CCM19 Integration"
+		},
+		"description": {
+			"de-DE": "Dieses Plugin integriert den CCM19 Cookie Consent Manager.\n\nMelden Sie sich beim CCM19 an und kopieren Sie ihr Code-Snippet in die Konfiguration dieses Plugins, um es zu aktivieren.",
+			"en-GB": "This plugin integrates the CCM19 Cookie Consent Manager.\n\nLogin to CCM19 and copy the code snippet into the configuration of this plugin to activate it."
+		},
+		"manufacturerLink": {
+			"de-DE": "https://papoo-media.de",
+			"en-GB": "https://papoo-media.de"
+		},
+		"supportLink": {
+			"de-DE": "https://www.ccm19.de/supportanfrage/",
+			"en-GB": "https://www.ccm19.de/supportanfrage/"
+		}
+	},
+	"autoload": {
+		"psr-4": {
+			"Papoo\\Ccm19Integration\\": "src/"
+		}
+	},
+	"suggest": {
+		"shopware/administration": "Require '*'. Allows you to to set up the plugin easily"
+	}
+}

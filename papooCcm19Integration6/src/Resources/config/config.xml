@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+	<card>
+		<title>Plugin configuration</title>
+		<title lang="de-DE">Plugin-Konfiguration</title>
+		<input-field type="textarea">
+			<name>integrationCode</name>
+			<label>CCM19 code snippet</label>
+			<label lang="de-DE">CCM19-Code-Snippet</label>
+			<defaultValue></defaultValue>
+			<placeholder>&lt;script …</placeholder>
+			<helpText>Enter the code snippet from CCM19 here. Make sure that the at least the whole URL is copied without typing errors. You need to repeat this for every subshop and locale.</helpText>
+			<helpText lang="de-DE">Fügen Sie hier das Code-Snippet aus CCM19 ein. Achten Sie darauf, dass mindestens die vollständige URL fehlerfrei übertragen wurde. Dies muss für alle Subshops und Locales durchgeführt werden.</helpText>
+		</input-field>
+	</card>
+</config>

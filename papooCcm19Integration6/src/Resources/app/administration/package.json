@@ -1,0 +1,8 @@
+{
+    "name": "papooccm19integration",
+    "version": "1.0.0",
+    "description": "Administration for CCM19 Integration",
+    "main": "index.js",
+    "author": "Papoo Software & Media GmbH",
+    "license": "proprietary"
+}
