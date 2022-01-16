@@ -1,7 +1,7 @@
 CCM19 plugin for Shopware 6
 ===========================
 
-To install, copy the folder 'PapooCcm19Integration' to 'custom/plugins/'.
+To install, copy the folder `PapooCcm19Integration` to `custom/plugins/` .
 
 Make changes to the administration JS
 ------------------------------------------
