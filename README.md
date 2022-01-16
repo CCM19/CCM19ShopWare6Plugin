@@ -1,29 +1,33 @@
-CCM19-Plugin für Shopware 6
+CCM19 plugin for Shopware 6
 ===========================
 
-Zur Installation den Ordner `PapooCcm19Integration` nach `custom/plugins/` kopieren.
+To install, copy the folder 'PapooCcm19Integration' to 'custom/plugins/'.
 
-Änderungen am Administrations-JS vornehmen
+Make changes to the administration JS
 ------------------------------------------
 
-Wenn Änderungen am Javascript-Code für die Administration vorgenommen werden, müssen diese kompiliert werden.
+If changes are made to the administration Javascript code, these must be compiled.
 
-Dafür wird die Development-Version von Shopware benötigt:
+The development version of Shopware is required for this:
 
 https://github.com/shopware/development
 
-Diese installieren (und ggf. `.psh.yaml` nach dem Vorbild von `.psh.yaml.dist` anlegen mit den richtigen Datenbank- und Mailer-Einstellungen).
+Install this (and if necessary create `.psh.yaml` along the lines of `.psh.yaml.dist` with the correct database and mailer settings).
 
-Abhängigkeiten: `apt install composer npm webpack node-webpack-merge node-copy-webpack-plugin`
+Dependencies: `apt install composer npm webpack node-webpack-merge node-copy-webpack-plugin`
 
-Das Plugin muss in der Installation installiert und aktiviert werden.
+The plugin must be installed and activated in the installation.
 
-Dann:
+Then:
 
 ```
-./psh.phar administration:install-dependencies # nur einmal nötig (installiert npm-Abhängigkeiten)
+./psh.phar administration:install-dependencies # only needed once (installs npm dependencies)
 
 ./psh.phar administration:build
+
 ```
 
-Danach findet sich das compilierte JS in `PapooCcm19Integration/src/Resources/public` und kann committed werden.
+After that the compiled JS can be found in `PapooCcm19Integration/src/Resources/public` and can be committed.
+
+
+Translated with www.DeepL.com/Translator (free version)
