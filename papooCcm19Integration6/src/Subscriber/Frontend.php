@@ -2,7 +2,7 @@
 /*
  * @copyright Papoo Software & Media GmbH
  * @author Christoph Grenz <info@papoo.de>
- * @date 2021-04-14
+ * @date 2022-02-03
  */
 
 namespace Papoo\Ccm19Integration\Subscriber;
@@ -44,11 +44,12 @@ class Frontend implements EventSubscriberInterface
 	}
 
 	/**
+	 * @param string|null Sales-Channel-ID (null for 'global')
 	 * @return string|null
 	 */
-	private function getIntegrationUrl(): ?string
+	private function getIntegrationUrl(?string $salesChannelId): ?string
 	{
-		$code = $this->config->get('papooCcm19Integration6.config.integrationCode');
+		$code = $this->config->get('papooCcm19Integration6.config.integrationCode', $salesChannelId);
 		if ($code) {
 			$match = [];
 			preg_match('~\bhttps?://[^"\'\s]{1,256}\.js\?(?>[^"\'\s]{1,128})~i', $code, $match);
@@ -76,7 +77,8 @@ class Frontend implements EventSubscriberInterface
 			/** @var Page $page */
 			$page = $parameters['page'];
 
-			$data = new CcmInformationStruct(['url'=>$this->getIntegrationUrl()]);
+			$salesChannel = $event->getSalesChannelContext()->getSalesChannelId();
+			$data = new CcmInformationStruct(['url'=>$this->getIntegrationUrl($salesChannel)]);
 
 			$page->addExtension(self::CCM19_INTEGRATION_EXTENSION_ID, $data);
 		}
