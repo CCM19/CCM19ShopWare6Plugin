@@ -1,9 +1,8 @@
 {% sw_extends '@Storefront/storefront/layout/meta.html.twig' %}
 
-{# Integrate CCM19 before any other script #}
-{% block layout_head_javascript_tracking %}
+{# Integrate CCM19 before any other script (especially GTM) #}
+{% block layout_head_meta_tags_charset %}
 	{% set ccm19Integration = page.extensions[constant('Papoo\\Ccm19Integration\\Subscriber\\Frontend::CCM19_INTEGRATION_EXTENSION_ID')] %}
-
 	{% if ccm19Integration.url %}
 	<!-- BEGIN CCM19 Cookie Consent Management -->
 	<script src="{{ ccm19Integration.url|escape }}" referrerpolicy="origin"></script>
