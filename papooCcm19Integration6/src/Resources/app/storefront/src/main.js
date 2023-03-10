@@ -3,7 +3,11 @@ import CookiePermissionCompat from './cookie-permission-compat/cookie-permission
 import { COOKIE_CONFIGURATION_UPDATE } from 'src/plugin/cookie/cookie-configuration.plugin';
 
 const PluginManager = window.PluginManager;
-PluginManager.override('CookiePermission', CookiePermissionCompat, '[data-cookie-permission]');
+try {
+    PluginManager.override('CookiePermission', CookiePermissionCompat, '[data-cookie-permission]');
+} catch (e) {
+    // Could not override CookiePermission plugin -> Banner probably disabled
+}
 
 $(window).on('ccm19CookieAccepted', function () {
     var updatedCookies = {};
