@@ -50,18 +50,22 @@ class Frontend implements EventSubscriberInterface
 	private function getIntegrationUrl(?string $salesChannelId): ?string
 	{
 		$code = $this->config->get('papooCcm19Integration6.config.integrationCode', $salesChannelId);
-		if ($code) {
-			$match = [];
-			preg_match('~\bhttps?://[^"\'\s]{1,256}\.js\?(?>[^"\'\s]{1,128})~i', $code, $match);
-			if ($match and $match[0]) {
-				if (strpos($match[0], ';') === false) {
-					return $match[0];
-				} else {
-					return html_entity_decode($match[0], ENT_HTML401|ENT_QUOTES, 'UTF-8');
-				}
-			}
+		if (!$code) {
+			return null;
 		}
-		return null;
+
+		$match = [];
+		preg_match('~\bhttps?://[^"\'\s]{1,256}\.js\?(?>[^"\'\s]{1,128})~i', $code, $match);
+
+		if (!$match or !$match[0]) {
+			return null;
+		}
+		
+		if (strpos($match[0], ';') === false) {
+			return $match[0];
+		} else {
+			return html_entity_decode($match[0], ENT_HTML401|ENT_QUOTES, 'UTF-8');
+		}
 	}
 
 	/**
@@ -73,14 +77,16 @@ class Frontend implements EventSubscriberInterface
 	public function injectCcmData(StorefrontRenderEvent $event): void
 	{
 		$parameters = $event->getParameters();
-		if (isset($parameters['page'])) {
-			/** @var Page $page */
-			$page = $parameters['page'];
-
-			$salesChannel = $event->getSalesChannelContext()->getSalesChannelId();
-			$data = new CcmInformationStruct(['url'=>$this->getIntegrationUrl($salesChannel)]);
-
-			$page->addExtension(self::CCM19_INTEGRATION_EXTENSION_ID, $data);
+		if(!isset($parameters['page'])) {
+			return;
 		}
+
+		/** @var Page $page */
+		$page = $parameters['page'];
+
+		$salesChannel = $event->getSalesChannelContext()->getSalesChannelId();
+		$data = new CcmInformationStruct(['url'=>$this->getIntegrationUrl($salesChannel)]);
+
+		$page->addExtension(self::CCM19_INTEGRATION_EXTENSION_ID, $data);
 	}
 }
