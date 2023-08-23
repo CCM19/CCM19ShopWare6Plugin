@@ -9,7 +9,7 @@ try {
     // Could not override CookiePermission plugin -> Banner probably disabled
 }
 
-$(window).on('ccm19CookieAccepted', function () {
+window.addEventListener('ccm19CookieAccepted', function () {
     var updatedCookies = {};
     for (const cookieName of window.CCM.acceptedCookies)
     {
