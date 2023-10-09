@@ -8,26 +8,19 @@ Make changes to the administration JS
 
 If changes are made to the administration Javascript code, these must be compiled.
 
-The development version of Shopware is required for this:
+Install the plugin in a Shopware installation.
 
-https://github.com/shopware/development
+Run `./bin/build-administration.sh`
 
-Install this (and if necessary create `.psh.yaml` along the lines of `.psh.yaml.dist` with the correct database and mailer settings).
+After that the compiled JS can be found in `custom/plugins/papooCcm19Integration6/src/Resources/public` and can be committed.
 
-Dependencies: `apt install composer npm webpack node-webpack-merge node-copy-webpack-plugin`
+Make changes to the storefront JS
+------------------------------------------
 
-The plugin must be installed and activated in the installation.
+If changes are made to the storefront Javascript code, these must be compiled.
 
-Then:
+Install the plugin in a Shopware installation.
 
-```
-./psh.phar administration:install-dependencies # only needed once (installs npm dependencies)
+Run `./bin/build-storefront.sh`
 
-./psh.phar administration:build
-
-```
-
-After that the compiled JS can be found in `PapooCcm19Integration/src/Resources/public` and can be committed.
-
-
-Translated with www.DeepL.com/Translator (free version)
+After that the compiled JS can be found in `custom/plugins/papooCcm19Integration6/src/Resources/app/storefront/dist` and can be committed.
