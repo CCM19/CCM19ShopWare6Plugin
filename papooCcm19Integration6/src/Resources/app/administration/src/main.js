@@ -1,22 +1,11 @@
-import './extension/sw-settings-index';
+import './module/papoo-ccm19integration';
 
-import deDE from './snippet/de-DE.json';
-import enGB from './snippet/en-GB.json';
+import iconComponents from './assets/icons';
 
-const { Module } = Shopware;
+const { Component } = Shopware;
 
-Module.register('papoo-ccm19integration', {
-    type: 'plugin',
-    name: 'PapooCcm19Integration',
-    title: 'papoo-ccm19integration.title',
-    description: 'papoo-ccm19integration.description',
-    version: '1.0.0',
-    targetVersion: '1.0.0',
-    color: '#A8B9BE',
-    icon: 'default-action-settings',
-
-    snippets: {
-        'de-DE': deDE,
-        'en-GB': enGB
-    }
-});
+export default (() => {
+    return iconComponents.map((component) => {
+        return Component.register(component.name, component);
+    });
+})();
