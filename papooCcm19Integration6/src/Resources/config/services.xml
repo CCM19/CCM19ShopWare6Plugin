@@ -8,10 +8,7 @@
 			<tag name="kernel.event_subscriber" />
 		</service>
 		<service id="Papoo\Ccm19Integration\Subscriber\ConfigChange" class="Papoo\Ccm19Integration\Subscriber\ConfigChange">
-			<argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
-			<argument type="service" id="sales_channel.repository" />
-			<argument>%kernel.shopware_version%</argument>
-			<argument>%instance_id%</argument>
+			<argument type="service" id="Papoo\Ccm19Integration\Service\LicenseNotifyTaskHandler" />
 			<tag name="kernel.event_subscriber" />
 		</service>
 
@@ -22,6 +19,8 @@
 			<argument type="service" id="scheduled_task.repository" />
 			<argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
 			<argument type="service" id="sales_channel.repository" />
+			<argument>%kernel.shopware_version%</argument>
+			<argument>%instance_id%</argument>
 			<tag name="messenger.message_handler" />
 		</service>
 	</services>

@@ -13,6 +13,6 @@ class LicenseNotifyTask extends ScheduledTask
 
 	public static function getDefaultInterval(): int
 	{
-		return 10800; // 3 hours
+		return 43200; // 12 hours
 	}
 }
