@@ -47,36 +47,54 @@ final class LicenseNotifyTaskHandler extends ScheduledTaskHandler
 		return [ LicenseNotifyTask::class ];
 	}
 
+	/**
+	 * @param array<string,?string> ['salesChannelId' => 'integrationCode']
+	 */
 	public function run(array $overrides=[]): void
 	{
 		$context = Context::createDefaultContext();
 
-		$keys = [];
+		$result = [];
 		$salesChannels = $this->salesChannelRepo->search(new Criteria(), $context);
 		foreach ($salesChannels as $channel) {
 			$salesChannelId = $channel->getId();
-			$apiKey = $overrides[$salesChannelId] ?? $this->getIntegrationApiKey($salesChannelId);
-
-			$keys[$apiKey] = $apiKey;
+			$data = $this->extractIntegrationApiKeyAndDomain($overrides[$salesChannelId] ?? $this->getIntegrationCode($salesChannelId));
+			if ($data) {
+				$result[$data['apiKey'].':'.(string)$data['domain']] = $data;
+			}
 		}
-		$this->submitApiKeys(array_filter(array_keys($keys)));
+		$this->submitReport(array_values($result));
 	}
 
 	/**
 	 * @param string|null Sales-Channel-ID (null for 'global')
-	 * @return string|null
+	 * @return array{apiKey:string,domain:?string}|null
 	 */
-	private function getIntegrationApiKey(?string $salesChannelId): ?string
+	private function extractIntegrationApiKeyAndDomain(?string $code): ?array
 	{
-		$code = $this->config->get('papooCcm19Integration6.config.integrationCode', $salesChannelId);
 		if ($code) {
-			$match = [];
-			preg_match('~[?&;]apiKey=([^&]*)~', $code, $match);
-			if ($match and $match[1]) {
-				return html_entity_decode($match[1], ENT_HTML401|ENT_QUOTES, 'UTF-8');
+			$keyMatch = [];
+			$domainMatch = [];
+			preg_match('~[?&;]apiKey=([^&\'"]*)~', $code, $keyMatch);
+			preg_match('~[?&;]domain=([^&\'"]*)~', $code, $domainMatch);
+			if ($keyMatch and $keyMatch[1]) {
+				return [
+					'apiKey' => html_entity_decode($keyMatch[1], ENT_HTML401|ENT_QUOTES, 'UTF-8'),
+					'domain' => (empty($domainMatch[1])) ? null : html_entity_decode($domainMatch[1], ENT_HTML401|ENT_QUOTES, 'UTF-8'),
+				];
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * @param string|null Sales-Channel-ID (null for 'global')
+	 * @return string
+	 */
+	private function getIntegrationCode(?string $salesChannelId): string
+	{
+		$code = $this->config->get('papooCcm19Integration6.config.integrationCode', $salesChannelId);
+		return (string)($code ?? '');
 	}
 
 	private function generateHash(array $data) {
@@ -86,21 +104,21 @@ final class LicenseNotifyTaskHandler extends ScheduledTaskHandler
 	}
 
 	/**
-	 * @param string[] $apiKeys
+	 * @param array[] $data
 	 */
-	private function submitApiKeys(array $apiKeys) {
+	private function submitReport(array $data) {
 		$now = new DateTime();
 		$data = [
 			'reportDate' => $now->format(DateTimeInterface::ATOM),
 			'instanceId' => $this->instanceId,
 			'shopwareVersion' => $this->shopwareVersion,
-			'ccm19ApiKeys' => $apiKeys,
+			'ccm19Data' => $data,
 		];
 		$hash = $this->generateHash($data);
 
 		$request = new Request(
 			'POST',
-				'https://licence.ccm19.de/shopware.php?action=register',
+				'https://licence.ccm19.de/shopware.php?action=report',
 				['Content-Type' => 'application/x-www-form-urlencoded', 'Authorization' => "Bearer $hash"],
 				http_build_query($data, '', '&', PHP_QUERY_RFC1738)
 		);
