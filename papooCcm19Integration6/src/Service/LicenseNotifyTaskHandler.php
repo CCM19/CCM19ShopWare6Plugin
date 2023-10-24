@@ -8,7 +8,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
 use Shopware\Core\Framework\Context;
-use Shopware\Core\Framework\DataAbstractionLayer\EntityRepositoryInterface;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTaskHandler;
 use Shopware\Core\System\SystemConfig\SystemConfigService;
@@ -32,7 +32,7 @@ final class LicenseNotifyTaskHandler extends ScheduledTaskHandler
 	/**
 	 * @param SystemConfigService $configReader
 	 */
-	public function __construct(EntityRepositoryInterface $taskRepo, SystemConfigService $config, EntityRepositoryInterface $salesChannelRepo, string $shopwareVersion, ?string $instanceId)
+	public function __construct(EntityRepository $taskRepo, SystemConfigService $config, EntityRepository $salesChannelRepo, string $shopwareVersion, ?string $instanceId)
 	{
 		parent::__construct($taskRepo);
 		$this->config = $config;
