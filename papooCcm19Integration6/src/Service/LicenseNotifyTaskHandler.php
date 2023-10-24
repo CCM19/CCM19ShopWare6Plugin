@@ -18,7 +18,7 @@ final class LicenseNotifyTaskHandler extends ScheduledTaskHandler
 	/** @var SystemConfigService */
 	private $config;
 
-	/** @var EntityRepositoryInterface */
+	/** @var EntityRepository */
 	private $salesChannelRepo;
 
 	/** @var Client */
