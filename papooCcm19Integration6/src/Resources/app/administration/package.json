@@ -1,0 +1,16 @@
+{
+    "name": "papooccm19integration",
+    "version": "1.0.0",
+    "description": "Administration for CCM19 Integration",
+    "main": "index.js",
+    "author": "Papoo Software & Media GmbH",
+    "license": "proprietary",
+    "dependencies": {
+        "@shopware-ag/meteor-admin-sdk": "^4.0.0",
+        "vue": "^3.0",
+        "vue-i18n": "^8.0"
+    },
+    "optionalDependencies": {
+        "administration": "^6.x"
+    }
+}
