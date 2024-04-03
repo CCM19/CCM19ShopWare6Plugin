@@ -77,7 +77,12 @@ class Frontend implements EventSubscriberInterface
 			/** @var Page $page */
 			$page = $parameters['page'];
 
-			$salesChannel = $event->getSalesChannelContext()->getSalesChannelId();
+			$context = $event->getSalesChannelContext();
+			if (method_exists($context, "getSalesChannelId")) {
+				$salesChannel = $context->getSalesChannelId();
+			} else {
+				$salesChannel = $context->getSalesChannel()->getId();
+			}
 			$data = new CcmInformationStruct(['url'=>$this->getIntegrationUrl($salesChannel)]);
 
 			$page->addExtension(self::CCM19_INTEGRATION_EXTENSION_ID, $data);
