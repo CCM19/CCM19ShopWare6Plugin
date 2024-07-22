@@ -10,7 +10,7 @@ namespace Papoo\Ccm19Integration\Subscriber;
 use Papoo\Ccm19Integration\Util\CcmInformationStruct;
 use Shopware\Core\System\SystemConfig\SystemConfigService;
 use Shopware\Storefront\Event\StorefrontRenderEvent;
-use Shopware\Storefront\Page\Page;
+use Shopware\Core\Framework\Struct\Struct;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -73,8 +73,8 @@ class Frontend implements EventSubscriberInterface
 	public function injectCcmData(StorefrontRenderEvent $event): void
 	{
 		$parameters = $event->getParameters();
-		if (isset($parameters['page'])) {
-			/** @var Page $page */
+		if (isset($parameters['page']) and $parameters['page'] instanceof Struct) {
+			/** @var Struct $page */
 			$page = $parameters['page'];
 
 			$context = $event->getSalesChannelContext();
