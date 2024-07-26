@@ -31,6 +31,7 @@ function setupShopwareCookieEvents() {
     };
 
     // Check which of the marker cookies are already set
+    // eslint-disable-next-line javascript:S1535
     for (const key in specialCookies) {
         specialCookies[key].forEach(function (item) {
             if (CookieStorage.getItem(item) != false) {
