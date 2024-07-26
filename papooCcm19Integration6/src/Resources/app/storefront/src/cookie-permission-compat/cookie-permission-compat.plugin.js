@@ -24,8 +24,9 @@ function setupShopwareCookieEvents() {
         '_swag_ga_ga*': ['google-analytics-enabled'],
         '_gcl_aw': ['google-ads-enabled'],
         '__gads': ['google-ads-enabled'],
-        '_dc_gtm_UA-*': ['wbm-tagmanager-enabled'],
-        '_dc_gtm_*': ['wbm-tagmanager-enabled'],
+        '_dc_gtm_UA-.*': ['wbm-tagmanager-enabled', 'shopstudio-google-tag-manager-cloud-cookie-consent'],
+        '_dc_gtm_UA-*': ['wbm-tagmanager-enabled', 'shopstudio-google-tag-manager-cloud-cookie-consent'],
+        '_dc_gtm_*': ['wbm-tagmanager-enabled', 'shopstudio-google-tag-manager-cloud-cookie-consent'],
         YSC: ['youtube-video'],
     };
 
