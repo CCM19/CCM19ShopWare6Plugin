@@ -1,0 +1,40 @@
+services:
+  
+  shopware:
+    image: dockware/dev:latest
+    #image: dockware/dev:6.5.8.6
+    #image: dockware/dev:6.6.9.0
+    container_name: shopware
+    ports:
+      - "8080:80"
+      #- "3306:3306"
+      - "22:22"
+      - "8888:8888"
+      - "9999:9999"
+      - "8008:80"
+      - "2222:22"
+
+    volumes:
+      - "db_volume:/var/lib/mysql"
+      - "shop_volume:/var/www/html"
+      - ./papooCcm19Integration6:/var/www/html/custom/plugins/papooCcm19Integration
+    networks:
+      web:
+        aliases:
+          - sw6dev.papoo.de
+    environment:
+      # default = 0, recommended to be OFF for frontend devs
+      - XDEBUG_ENABLED=0
+      # default = latest PHP, optional = specific version
+      - PHP_VERSION=8.2
+      - APP_URL=http://sw6dev.papoo.de
+      - STORE_URL=http://sw6dev.papoo.de
+volumes:
+  db_volume:
+    driver: local
+  shop_volume:
+    driver: local
+
+networks:
+  web:
+    external: false
