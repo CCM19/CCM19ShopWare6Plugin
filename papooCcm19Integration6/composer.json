@@ -1,7 +1,7 @@
 {
 	"name": "papoo/ccm19integration6",
 	"description": "This plugin integrates the CCM19 Cookie Consent Manager.",
-	"version": "v1.1.2",
+	"version": "v1.1.3",
 	"type": "shopware-platform-plugin",
 	"license": "proprietary",
 	"authors": [

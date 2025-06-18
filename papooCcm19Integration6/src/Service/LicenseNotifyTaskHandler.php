@@ -7,6 +7,7 @@ use DateTimeInterface;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Psr7\Request;
+use Psr\Log\LoggerInterface;
 use Shopware\Core\Framework\Context;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
@@ -32,9 +33,9 @@ final class LicenseNotifyTaskHandler extends ScheduledTaskHandler
 	/**
 	 * @param SystemConfigService $configReader
 	 */
-	public function __construct(EntityRepository $taskRepo, SystemConfigService $config, EntityRepository $salesChannelRepo, string $shopwareVersion, ?string $instanceId)
+	public function __construct(EntityRepository $taskRepo, SystemConfigService $config, EntityRepository $salesChannelRepo, string $shopwareVersion, ?string $instanceId, ?LoggerInterface $logger=null)
 	{
-		parent::__construct($taskRepo);
+		parent::__construct($taskRepo, $logger);
 		$this->config = $config;
 		$this->salesChannelRepo = $salesChannelRepo;
 		$this->shopwareVersion = $shopwareVersion;

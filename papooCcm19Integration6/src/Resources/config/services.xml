@@ -21,6 +21,7 @@
 			<argument type="service" id="sales_channel.repository" />
 			<argument>%kernel.shopware_version%</argument>
 			<argument>%instance_id%</argument>
+			<argument type="service" id="Psr\Log\LoggerInterface" />
 			<tag name="messenger.message_handler" />
 		</service>
 	</services>
