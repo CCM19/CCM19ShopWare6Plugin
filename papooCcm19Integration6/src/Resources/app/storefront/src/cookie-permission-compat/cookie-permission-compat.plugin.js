@@ -20,14 +20,17 @@ function setupShopwareCookieEvents() {
 
     // Cookie names for which a special marker cookie needs to be set
     const specialCookies = {
-        '_ga': ['google-analytics-enabled'],
-        '_swag_ga_ga*': ['google-analytics-enabled'],
-        '_gcl_aw': ['google-ads-enabled'],
-        '__gads': ['google-ads-enabled'],
-        '_dc_gtm_UA-.*': ['wbm-tagmanager-enabled', 'shopstudio-google-tag-manager-cloud-cookie-consent'],
-        '_dc_gtm_UA-*': ['wbm-tagmanager-enabled', 'shopstudio-google-tag-manager-cloud-cookie-consent'],
-        '_dc_gtm_*': ['wbm-tagmanager-enabled', 'shopstudio-google-tag-manager-cloud-cookie-consent'],
-        YSC: ['youtube-video'],
+        '_ga': ['google-analytics-enabled'], // Google Analytics
+        '_swag_ga_ga*': ['google-analytics-enabled'], // Google Analytics (Shopware integration)
+        '_gcl_aw': ['google-ads-enabled'], // Google Ads
+        '__gads': ['google-ads-enabled'], // Google Ads
+        '_dc_gtm_UA-.*': ['wbm-tagmanager-enabled', 'shopstudio-google-tag-manager-cloud-cookie-consent'], // Google Tag Manager
+        '_dc_gtm_UA-*': ['wbm-tagmanager-enabled', 'shopstudio-google-tag-manager-cloud-cookie-consent'], // Google Tag Manager
+        '_dc_gtm_*': ['wbm-tagmanager-enabled', 'shopstudio-google-tag-manager-cloud-cookie-consent'], // Google Tag Manager
+        'wishlist-*': ['wishlist-enabled'], // Wishlist
+        '_swa_anonymousId': ['_swa_consent_enabled'], // Shopware Analytics
+        'df-random-userid': ['df-session'], // DooFinder
+        YSC: ['youtube-video'], // Youtube
     };
 
     // Check which of the marker cookies are already set
