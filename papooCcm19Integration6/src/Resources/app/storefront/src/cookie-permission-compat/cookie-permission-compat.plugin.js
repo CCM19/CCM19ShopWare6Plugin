@@ -27,7 +27,8 @@ function setupShopwareCookieEvents() {
         '_dc_gtm_UA-.*': ['wbm-tagmanager-enabled', 'shopstudio-google-tag-manager-cloud-cookie-consent'], // Google Tag Manager
         '_dc_gtm_UA-*': ['wbm-tagmanager-enabled', 'shopstudio-google-tag-manager-cloud-cookie-consent'], // Google Tag Manager
         '_dc_gtm_*': ['wbm-tagmanager-enabled', 'shopstudio-google-tag-manager-cloud-cookie-consent'], // Google Tag Manager
-        'wishlist-*': ['wishlist-enabled'], // Wishlist
+        'wishlist-*': ['wishlist-enabled'], // Shopware Wishlist
+        'wishlist-enabled': ['wishlist-enabled'], // Shopware Wishlist
         '_swa_anonymousId': ['_swa_consent_enabled'], // Shopware Analytics
         'df-random-userid': ['df-session'], // DooFinder
         YSC: ['youtube-video'], // Youtube
