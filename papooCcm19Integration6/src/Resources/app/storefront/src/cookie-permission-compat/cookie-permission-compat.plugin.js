@@ -32,6 +32,8 @@ function setupShopwareCookieEvents() {
         '_swa_anonymousId': ['_swa_consent_enabled'], // Shopware Analytics
         'df-random-userid': ['df-session'], // DooFinder
         YSC: ['youtube-video'], // Youtube
+        '_fbp': ['mediameets-facebook-pixel-enabled'], // Facebook/Meta Pixel
+        'mediameets-facebook-pixel-enabled': ['mediameets-facebook-pixel-enabled'], // Facebook/Meta Pixel
     };
 
     // Check which of the marker cookies are already set
