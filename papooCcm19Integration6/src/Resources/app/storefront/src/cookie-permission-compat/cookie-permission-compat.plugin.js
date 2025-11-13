@@ -20,20 +20,42 @@ function setupShopwareCookieEvents() {
 
     // Cookie names for which a special marker cookie needs to be set
     const specialCookies = {
+        'cookie-preference': ['cookie-preference'], // Shopware Cookie-Banner
         '_ga': ['google-analytics-enabled'], // Google Analytics
         '_swag_ga_ga*': ['google-analytics-enabled'], // Google Analytics (Shopware integration)
+        '_dis_ga': ['_dis_ga'], // Google Analytics (D-I-S integration)
         '_gcl_aw': ['google-ads-enabled'], // Google Ads
         '__gads': ['google-ads-enabled'], // Google Ads
-        '_dc_gtm_UA-.*': ['wbm-tagmanager-enabled', 'shopstudio-google-tag-manager-cloud-cookie-consent'], // Google Tag Manager
-        '_dc_gtm_UA-*': ['wbm-tagmanager-enabled', 'shopstudio-google-tag-manager-cloud-cookie-consent'], // Google Tag Manager
-        '_dc_gtm_*': ['wbm-tagmanager-enabled', 'shopstudio-google-tag-manager-cloud-cookie-consent'], // Google Tag Manager
+        '_dis_gads': ['_dis_gads'], // Google Ads (D-I-S integration)
+        '_dc_gtm_UA-.*': ['wbm-tagmanager-enabled', 'shopstudio-google-tag-manager-cloud-cookie-consent', 'dtgsAllowGtmTracking'], // Google Tag Manager
+        '_dc_gtm_UA-*': ['wbm-tagmanager-enabled', 'shopstudio-google-tag-manager-cloud-cookie-consent', 'dtgsAllowGtmTracking'], // Google Tag Manager
+        '_dc_gtm_*': ['wbm-tagmanager-enabled', 'shopstudio-google-tag-manager-cloud-cookie-consent', 'dtgsAllowGtmTracking'], // Google Tag Manager
         'wishlist-*': ['wishlist-enabled'], // Shopware Wishlist
         'wishlist-enabled': ['wishlist-enabled'], // Shopware Wishlist
         '_swa_anonymousId': ['_swa_consent_enabled'], // Shopware Analytics
         'df-random-userid': ['df-session'], // DooFinder
+        'df-session': ['df-session'], // DooFinder
         YSC: ['youtube-video'], // Youtube
-        '_fbp': ['mediameets-facebook-pixel-enabled'], // Facebook/Meta Pixel
+        '_fbp': ['mediameets-facebook-pixel-enabled', '_dis_meta'], // Facebook/Meta Pixel
         'mediameets-facebook-pixel-enabled': ['mediameets-facebook-pixel-enabled'], // Facebook/Meta Pixel
+        '_dis_meta': ['_dis_meta'], // Facebook/Meta Pixel (D-I-S integration)
+        'atl_newsletter_modal_closed': ['atl_newsletter_modal_closed'], // Atloss Newsletter Pop-Up
+        'moorl-location-map': ['moorl-location-map'], // Moori Store Locator
+        'moorl-fb-store': ['moorl-fb-store'],
+        '_dis_mads': ['_dis_mads'], // Microsoft Ads (D-I-S integration)
+        '_dis_pinterest': ['_dis_pinterest'], // Pinterest Ads (D-I-S integration)
+        '_dis_tiktok': ['_dis_tiktok'], // Tiktok Ads (D-I-S integration)
+
+    };
+    // Values for these special cookies (default: '1')
+    const specialCookieValues = {
+        'atl_newsletter_modal_closed': '0',
+        '_dis_ga': '_ga',
+        '_dis_gads': '_gads',
+        '_dis_meta': '_fbp',
+        '_dis_mads': '_microsoft',
+        '_dis_pinterest': '_pinterest',
+        '_dis_tiktok': '_tiktok',
     };
 
     // Check which of the marker cookies are already set
@@ -60,7 +82,8 @@ function setupShopwareCookieEvents() {
                     activeCookies[item] = true;
                     if (CookieStorage.getItem(item) == false) {
                         // Set the marker cookie with a short lifetime (~30m)
-                        CookieStorage.setItem(item, '1', 0.02);
+                        const value = (item in specialCookieValues) ? specialCookieValues[item] : '1';
+                        CookieStorage.setItem(item, value, 0.02);
                     }
                 });
             } else if (key in knownCookies) {
