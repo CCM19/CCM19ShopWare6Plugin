@@ -1,0 +1,25 @@
+{
+  "base": "/bundles/papooccm19integration6/administration/",
+  "entryPoints": {
+    "papoo-ccm19-integration6": {
+      "css": [
+        "/bundles/papooccm19integration6/administration/assets/papoo-ccm19-integration6-BJLzpA27.css"
+      ],
+      "dynamic": [],
+      "js": [
+        "/bundles/papooccm19integration6/administration/assets/papoo-ccm19-integration6-Au-zm311.js"
+      ],
+      "legacy": false,
+      "preload": []
+    }
+  },
+  "legacy": false,
+  "metadatas": {},
+  "version": [
+    "7.1.0",
+    7,
+    1,
+    0
+  ],
+  "viteServer": null
+}

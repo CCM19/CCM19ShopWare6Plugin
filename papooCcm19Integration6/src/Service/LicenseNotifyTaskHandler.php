@@ -13,7 +13,9 @@ use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
 use Shopware\Core\Framework\MessageQueue\ScheduledTask\ScheduledTaskHandler;
 use Shopware\Core\System\SystemConfig\SystemConfigService;
+use Symfony\Component\Messenger\Attribute\AsMessageHandler;
 
+#[AsMessageHandler(handles: LicenseNotifyTask::class)]
 final class LicenseNotifyTaskHandler extends ScheduledTaskHandler
 {
 	/** @var SystemConfigService */
@@ -31,21 +33,22 @@ final class LicenseNotifyTaskHandler extends ScheduledTaskHandler
 	private const API_TOKEN = 'xCHnQegWLeprUzBQFdPSsXAp6prvhaYI';
 
 	/**
-	 * @param SystemConfigService $configReader
+	 * @param EntityRepository $taskRepo
+	 * @param SystemConfigService $config
+	 * @param EntityRepository $salesChannelRepo
+	 * @param string $shopwareVersion
+	 * @param string|null $instanceId
+	 * @param LoggerInterface|null $logger
 	 */
 	public function __construct(EntityRepository $taskRepo, SystemConfigService $config, EntityRepository $salesChannelRepo, string $shopwareVersion, ?string $instanceId, ?LoggerInterface $logger=null)
 	{
-		parent::__construct($taskRepo, $logger);
 		$this->config = $config;
 		$this->salesChannelRepo = $salesChannelRepo;
 		$this->shopwareVersion = $shopwareVersion;
 		$this->instanceId = $instanceId;
 		$this->client = new Client();
-	}
 
-	public static function getHandledMessages(): iterable
-	{
-		return [ LicenseNotifyTask::class ];
+		parent::__construct($taskRepo, $logger);
 	}
 
 	/**

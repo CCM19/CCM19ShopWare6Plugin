@@ -6,8 +6,8 @@
 		<title lang="de-DE">Plugin-Konfiguration</title>
 		<input-field type="textarea">
 			<name>integrationCode</name>
-			<label>CCM19 code snippet</label>
-			<label lang="de-DE">CCM19-Code-Snippet</label>
+			<label>CCM19 code snippet / URL</label>
+			<label lang="de-DE">CCM19-Code-Snippet / URL</label>
 			<defaultValue></defaultValue>
 			<placeholder>&lt;script …</placeholder>
 			<helpText>Enter the code snippet from CCM19 here. Make sure that the at least the whole URL is copied without typing errors. You need to repeat this for every subshop and locale.</helpText>

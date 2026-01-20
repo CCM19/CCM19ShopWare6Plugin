@@ -1,0 +1,11 @@
+{
+  "main.js": {
+    "file": "assets/papoo-ccm19-integration6-Au-zm311.js",
+    "name": "papoo-ccm19-integration6",
+    "src": "main.js",
+    "isEntry": true,
+    "css": [
+      "assets/papoo-ccm19-integration6-BJLzpA27.css"
+    ]
+  }
+}
