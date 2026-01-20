@@ -51,6 +51,11 @@ final class LicenseNotifyTaskHandler extends ScheduledTaskHandler
 		parent::__construct($taskRepo, $logger);
 	}
 
+	public static function getHandledMessages(): iterable
+	{
+		return [ LicenseNotifyTask::class ];
+	}
+
 	/**
 	 * @param array<string,?string> ['salesChannelId' => 'integrationCode']
 	 */
