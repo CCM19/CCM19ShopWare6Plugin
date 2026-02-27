@@ -45,7 +45,7 @@ function setupShopwareCookieEvents() {
         '_dis_mads': ['_dis_mads'], // Microsoft Ads (D-I-S integration)
         '_dis_pinterest': ['_dis_pinterest'], // Pinterest Ads (D-I-S integration)
         '_dis_tiktok': ['_dis_tiktok'], // Tiktok Ads (D-I-S integration)
-
+        '_GRECAPTCHA': ['_GRECAPTCHA'], // reCAPTCHA (native Shopware integration)
     };
     // Values for these special cookies (default: '1')
     const specialCookieValues = {
