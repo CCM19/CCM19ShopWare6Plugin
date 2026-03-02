@@ -113,6 +113,14 @@ function setupShopwareCookieEvents() {
 
         knownCookies = activeCookies;
         if (Object.keys(updatedCookies).length > 0) {
+            CookieStorage.setItem("cookie-preference", "1", 0.02);
+
+            // Special case: native Google ReCaptcha integration
+            if (typeof window.registerGoogleReCaptchaPlugins === 'function' && 'PluginManager' in window) {
+                window.registerGoogleReCaptchaPlugins();
+                window.PluginManager.initializePlugins();
+            }
+
             document.$emitter.publish(COOKIE_CONFIGURATION_UPDATE, updatedCookies);
         }
     }
