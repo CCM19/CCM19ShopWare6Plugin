@@ -15,4 +15,9 @@ class LicenseNotifyTask extends ScheduledTask
 	{
 		return 43200; // 12 hours
 	}
+
+	public static function shouldRescheduleOnFailure(): bool
+	{
+		return true;
+	}
 }
