@@ -1,11 +1,20 @@
 {
   "main.js": {
-    "file": "assets/papoo-ccm19-integration6-Au-zm311.js",
+    "file": "assets/papoo-ccm19-integration6-5p22o_nH.js",
     "name": "papoo-ccm19-integration6",
     "src": "main.js",
     "isEntry": true,
+    "dynamicImports": [
+      "module/papoo-ccm19integration/components/papoo-ccm19-settings-icon/index.js"
+    ]
+  },
+  "module/papoo-ccm19integration/components/papoo-ccm19-settings-icon/index.js": {
+    "file": "assets/index-Cpi4aG7G.js",
+    "name": "index",
+    "src": "module/papoo-ccm19integration/components/papoo-ccm19-settings-icon/index.js",
+    "isDynamicEntry": true,
     "css": [
-      "assets/papoo-ccm19-integration6-BJLzpA27.css"
+      "assets/index-eg_4o9B0.css"
     ]
   }
 }

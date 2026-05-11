@@ -1,15 +1,16 @@
-import './components/papoo-ccm19-settings-icon';
 import deDE from './snippet/de-DE.json';
 import enGB from './snippet/en-GB.json';
 
-const { Module } = Shopware;
+const { Module, Component } = Shopware;
+
+Component.register('papoo-ccm19-settings-icon', () => import('./components/papoo-ccm19-settings-icon'));
 
 Module.register('papoo-ccm19integration', {
     type: 'plugin',
     name: 'papoo-ccm19integration.title',
     description: 'papoo-ccm19integration.description',
     color: '#9AA8B5',
-    icon: 'default-device-server',
+    icon: 'default-object-rocket',
     favicon: 'icon-module-settings.png',
     routes: {
         settings: {

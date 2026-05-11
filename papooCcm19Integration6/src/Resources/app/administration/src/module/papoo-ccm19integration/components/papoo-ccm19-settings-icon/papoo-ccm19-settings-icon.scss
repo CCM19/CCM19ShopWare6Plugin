@@ -1,15 +1,8 @@
-@import "~scss/mixins";
+.sw-settings__card--hero .sw-settings-item .sw-settings-item__icon img, .sw-settings__card--hero .sw-settings-item .sw-settings-item__icon .papoo-ccm19-settings-icon > svg {
+    max-width: 24px !important;
+    width: 24px !important;
 
-.icons-ccm19-multicolor {
-    @include size(35px);
-
-    display: inline-block;
+    margin-left: -4px;
+    margin-right: -4px;
     vertical-align: middle;
-    line-height: 0;
-
-    > svg {
-        width: 100%;
-        height: 100%;
-        vertical-align: middle;
-    }
 }

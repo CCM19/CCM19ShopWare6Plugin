@@ -1,7 +1,7 @@
 <?php
 /*
  * Papoo CCM19 Integration Plugin for Shopware 6
- * Version 1.0.4
+ * Version 1.1.12
  *
  * (c) Papoo Software & Media GmbH
  *     Dr. Carsten Euwens
