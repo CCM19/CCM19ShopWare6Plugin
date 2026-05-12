@@ -61,7 +61,7 @@ final class LicenseNotifyTaskHandler extends ScheduledTaskHandler
 	 */
 	public function run(array $overrides=[]): void
 	{
-		$context = Context::createCLIContext();
+		$context = method_exists(Context::class, 'createCLIContext') ? Context::createCLIContext() : Context::createDefaultContext();
 
 		$result = [];
 		$salesChannels = $this->salesChannelRepo->search(new Criteria(), $context);
